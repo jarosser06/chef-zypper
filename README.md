@@ -57,6 +57,16 @@ and set the `smt_host` attribute to your smt server:
 }
 ```
 
+Testing
+-------
+To test with test kitchen you need to have a SLES Vagrant box already on
+your system(checkout github.com/opscode/bento).  In order to test the smt recipe
+with your smt server set the SMT_HOST env variable to your smt host:
+
+```shell
+export SMT_HOST=smt.example.com
+```
+
 Contributing
 ------------
 1. Fork the repository on Github
