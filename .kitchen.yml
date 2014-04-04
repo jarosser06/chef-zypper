@@ -17,7 +17,7 @@ suites:
     attributes:
   - name: smt-client
     run_list:
-      - recipe[zypper:smt_client]
+      - recipe[zypper::smt_client]
     attributes:
       zypper:
         smt_host: <%= ENV['SMT_HOST'] %>
