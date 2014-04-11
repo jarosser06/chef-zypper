@@ -3,4 +3,4 @@ zypper CHANGELOG
 
 0.1.0
 -----
-- [your_name] - Initial release of zypper
+- [jarosser06] - Initial release of zypper
