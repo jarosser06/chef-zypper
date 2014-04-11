@@ -15,6 +15,10 @@ suites:
     run_list:
       - recipe[zypper::default]
     attributes:
+  - name: lwrp
+    run_list:
+      - recipe[zypper-test]
+    attributes:
   - name: smt-client
     run_list:
       - recipe[zypper::smt_client]
