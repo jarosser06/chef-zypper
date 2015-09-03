@@ -38,6 +38,7 @@ Resource/Provider
 - **alias** - repo alias (name attribute)
 - **uri** - uri of the repo
 - **autorefresh** - enable autorefresh
+- **key** - location of repo key to import
 
 Usage
 -----
