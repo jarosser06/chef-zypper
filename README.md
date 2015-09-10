@@ -5,11 +5,11 @@ recipe to install and configure the smt-client for SLES.
 
 Requirements
 ------------
-Tested with SLES 11sp3
+Tested with SLES 11sp3 and OpenSUSE 13.1
 
 Attributes
 ----------
-#### zypper::default
+#### zypper::smt_client
 <table>
   <tr>
     <th>Key</th>
@@ -35,7 +35,7 @@ Resource/Provider
 - **delete** - removes a repo
 
 ### Attributes
-- **alias** - repo alias (name attribute)
+- **repo_name** - repo alias (name attribute)
 - **uri** - uri of the repo
 - **autorefresh** - enable autorefresh
 - **key** - location of repo key to import
@@ -96,7 +96,7 @@ License and Authors
 - Author:: Jim Rosser(jarosser06@gmail.com)
 
 ```text
-copyright (C) 2014 Jim Rosser
+copyright (C) 2014-2015 Jim Rosser
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
