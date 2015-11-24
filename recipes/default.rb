@@ -25,6 +25,6 @@
 #
 
 execute 'zypper_refresh' do
-  command 'zypper refresh'
+  command 'zypper --non-interactive refresh'
   user 'root'
 end
