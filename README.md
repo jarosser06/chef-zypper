@@ -40,18 +40,24 @@ Resource/Provider
 - **autorefresh** - enable autorefresh
 - **key** - location of repo key to import
 
-Usage
------
-#### zypper::default
-Just include `zypper` in your node's `run_list`:
+Example Usage
+-------------
 
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[zypper]"
-  ]
-}
+```ruby
+zypper_repo 'remove_dvd_repo' do
+  action :remove
+  repo_name 'SLES11SP3-x64 DVD1 Online'
+end
+
+zypper_repo 'add_dvd_repo' do
+  repo_name 'SLES11SP3-x64 DVD1 Online'
+  uri 'http://demeter.uni-regensburg.de/SLES11SP3-x64/DVD1/'
+end
+
+zypper_repo 'jenkins' do
+  key 'http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key'
+  uri 'http://pkg.jenkins-ci.org/opensuse/'
+end
 ```
 
 #### zypper::smt_client
