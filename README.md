@@ -1,47 +1,48 @@
-zypper Cookbook
-===============
-Cookbook that provides a lwrp for zypper repositories and also a
-recipe to install and configure the smt-client for SLES.
+# zypper Cookbook
 
-Requirements
-------------
-Tested with SLES 11sp3 and OpenSUSE 13.1
+Cookbook that provides a lwrp for zypper repositories and also a recipe to install and configure the smt-client for SLES.
 
-Attributes
-----------
-#### zypper::smt_client
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['zypper']['smt_host']</tt></td>
-    <td>String</td>
-    <td>uri of the SMT host</td>
-    <td><tt>nil</tt></td>
-  </tr>
-</table>
+## Requirements
 
-Resource/Provider
------------------
+### Platforms
+
+- SLES 11+
+- openSUSE 13+
+- openSUSE Leap
+
+### Chef
+
+- Chef 11+
+
+### Cookbooks
+
+- none
+
+## Attributes
+
+### zypper::smt_client
+
+Key                             | Type   | Description         | Default
+------------------------------- | ------ | ------------------- | ------------
+<tt>['zypper']['smt_host']</tt> | String | uri of the SMT host | <tt>nil</tt>
+
+## Resource/Provider
 
 ## zypper_repo
 
 ### Actions
+
 - **add** - adds a repo
 - **delete** - removes a repo
 
 ### Attributes
+
 - **repo_name** - repo alias (name attribute)
 - **uri** - uri of the repo
 - **autorefresh** - enable autorefresh
 - **key** - location of repo key to import
 
-Example Usage
--------------
+## Example Usage
 
 ```ruby
 zypper_repo 'remove_dvd_repo' do
@@ -60,9 +61,9 @@ zypper_repo 'jenkins' do
 end
 ```
 
-#### zypper::smt_client
-Just include `zypper::smt_client` in your node's `run_list`
-and set the `smt_host` attribute to your smt server:
+### zypper::smt_client
+
+Just include `zypper::smt_client` in your node's `run_list` and set the `smt_host` attribute to your smt server:
 
 ```json
 {
@@ -78,18 +79,16 @@ and set the `smt_host` attribute to your smt server:
 }
 ```
 
-Testing
--------
-To test with test kitchen you need to have a SLES Vagrant box already on
-your system(checkout github.com/opscode/bento).  In order to test the smt recipe
-with your smt server set the SMT_HOST env variable to your smt host:
+## Testing
+
+To test with test kitchen you need to have a SLES Vagrant box already on your system(checkout github.com/opscode/bento). In order to test the smt recipe with your smt server set the SMT_HOST env variable to your smt host:
 
 ```shell
 export SMT_HOST=smt.example.com
 ```
 
-Contributing
-------------
+## Contributing
+
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write you change
@@ -97,8 +96,8 @@ Contributing
 5. Run the tests, ensuring they all pass
 6. Submit a Pull Request using Github
 
-License and Authors
--------------------
+## License and Authors
+
 - Author:: Jim Rosser(jarosser06@gmail.com)
 
 ```text
