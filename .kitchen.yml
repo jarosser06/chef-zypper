@@ -1,15 +1,15 @@
----
 driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
 
 platforms:
   - name: sles-11sp3
     driver_config:
       box: opscode-sles-11sp3
   - name: opensuse-13.1
+  - name: opensuse-42.1
 
 suites:
   - name: default
@@ -21,8 +21,8 @@ suites:
       - recipe[zypper-test]
     attributes:
   - name: smt-client
-    excludes:
-    - opensuse-13.1
+    includes:
+    - sles-11sp3
     run_list:
       - recipe[zypper::smt_client]
     attributes:

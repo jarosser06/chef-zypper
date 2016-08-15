@@ -1,5 +1,7 @@
 require 'mixlib/shellout'
 
+use_inline_resources
+
 action :add do
   if repo_exist?
     new_resource.updated_by_last_action false
@@ -8,8 +10,8 @@ action :add do
       install_curl
       import_key
     end
-    command = "zypper ar"
-    command << " -f" if new_resource.autorefresh
+    command = 'zypper ar'
+    command << ' -f' if new_resource.autorefresh
     command << " #{new_resource.uri} \"#{new_resource.repo_name}\""
     shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
     if shellout.stderr.empty?
