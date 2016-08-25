@@ -41,6 +41,7 @@ Key                             | Type   | Description         | Default
 - **uri** - uri of the repo
 - **autorefresh** - enable autorefresh
 - **key** - location of repo key to import
+- **priority** - priority of the repo
 
 ## Example Usage
 

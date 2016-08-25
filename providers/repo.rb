@@ -16,6 +16,7 @@ action :add do
     shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
     if shellout.stderr.empty?
       new_resource.updated_by_last_action true
+      set_priority
     else
       Chef::Log.error("Error adding repo: #{shellout.stderr}")
     end
@@ -57,4 +58,15 @@ def import_key
                                 run_context)
   cmd.command "rpm --import #{new_resource.key}"
   cmd.run_action :run
+end
+
+def set_priority
+  unless new_resource.priority.nil? or new_resource.priority <= 0
+    command = 'zypper mr'
+    command << " -p #{new_resource.priority} \"#{new_resource.repo_name}\""
+    shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
+    if not shellout.stderr.empty?
+      Chef::Log.error("Error setting repo priority: #{shellout.stderr}")
+    end
+  end
 end
