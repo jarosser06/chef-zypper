@@ -9,7 +9,7 @@ platforms:
     driver_config:
       box: opscode-sles-11sp3
   - name: opensuse-13.1
-  - name: opensuse-42.1
+  - name: opensuse-leap-42.2
 
 suites:
   - name: default
@@ -28,4 +28,3 @@ suites:
     attributes:
       zypper:
         smt_host: <%= ENV['SMT_HOST'] %>
-

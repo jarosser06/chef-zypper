@@ -2,38 +2,37 @@ require 'mixlib/shellout'
 
 use_inline_resources
 
+def whyrun_supported?
+  true
+end
+
 action :add do
-  if repo_exist?
-    new_resource.updated_by_last_action false
-  else
-    unless new_resource.key.nil?
-      install_curl
-      import_key
-    end
-    command = 'zypper ar'
-    command << ' -f' if new_resource.autorefresh
-    command << " #{new_resource.uri} \"#{new_resource.repo_name}\""
-    shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
-    if shellout.stderr.empty?
-      new_resource.updated_by_last_action true
-      set_priority
-    else
-      Chef::Log.error("Error adding repo: #{shellout.stderr}")
+  unless repo_exist?
+    converge_by("add zypper repository '#{new_resource.repo_name}'") do
+      unless new_resource.key.nil?
+        install_curl
+        import_key
+      end
+      command = 'zypper ar'
+      command << ' -f' if new_resource.autorefresh
+      command << " #{new_resource.uri} \"#{new_resource.repo_name}\""
+      shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
+      if shellout.stderr.empty?
+        set_priority
+      else
+        Chef::Log.error("Error adding repo: #{shellout.stderr}")
+      end
     end
   end
 end
 
 action :remove do
   if repo_exist?
-    command = "zypper rr \"#{new_resource.repo_name}\""
-    shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
-    if shellout.stderr.empty?
-      new_resource.updated_by_last_action true
-    else
-      Chef::Log.error("Error removing repo: #{shellout.stderr}")
+    converge_by("remove zypper repository '#{new_resource.repo_name}'") do
+      command = "zypper rr \"#{new_resource.repo_name}\""
+      shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
+      Chef::Log.error("Error removing repo: #{shellout.stderr}") unless shellout.stderr.empty?
     end
-  else
-    new_resource.updated_by_last_action false
   end
 end
 
@@ -61,12 +60,9 @@ def import_key
 end
 
 def set_priority
-  unless new_resource.priority.nil? or new_resource.priority <= 0
-    command = 'zypper mr'
-    command << " -p #{new_resource.priority} \"#{new_resource.repo_name}\""
-    shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
-    if not shellout.stderr.empty?
-      Chef::Log.error("Error setting repo priority: #{shellout.stderr}")
-    end
-  end
+  return if new_resource.priority.nil? || new_resource.priority <= 0
+  command = 'zypper mr'
+  command << " -p #{new_resource.priority} \"#{new_resource.repo_name}\""
+  shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
+  Chef::Log.error("Error setting repo priority: #{shellout.stderr}") unless shellout.stderr.empty?
 end
