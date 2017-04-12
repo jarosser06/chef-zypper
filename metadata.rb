@@ -4,7 +4,7 @@ maintainer_email 'jarosser06@gmail.com'
 license          'MIT'
 description      'Provides resources for managing zypper repositories'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.3.0'
+version          '0.4.0'
 supports         'suse'
 supports         'opensuse'
 supports         'opensuseleap'

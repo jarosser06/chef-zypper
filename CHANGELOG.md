@@ -1,5 +1,10 @@
 # zypper CHANGELOG
 
+## 0.4.0
+
+- [tas50] - Add Whyrun support
+- [bluca] - Add repository priority attribute
+
 ## 0.3.0
 
 - [tas50] - Add issues_url, source_url, and chef_version to the metadata
