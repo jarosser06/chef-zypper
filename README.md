@@ -35,9 +35,9 @@ Key                             | Type   | Description         | Default
 - **add** - adds a repo
 - **delete** - removes a repo
 
-### Attributes
+### Properties
 
-- **repo_name** - repo alias (name attribute)
+- **repo_name** - repo alias (name property)
 - **uri** - uri of the repo
 - **autorefresh** - enable autorefresh
 - **key** - location of repo key to import
