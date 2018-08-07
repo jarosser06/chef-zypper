@@ -1,3 +1,7 @@
+
+chef_version_for_provides "< 14.0" if defined?(:chef_version_for_provides)
+resource_name :zypper_repo
+
 actions :add, :remove
 default_action :add
 
