@@ -10,3 +10,4 @@ attribute :autorefresh, kind_of: [TrueClass, FalseClass]
 attribute :uri, kind_of: String
 attribute :key, kind_of: String, default: nil
 attribute :priority, kind_of: Integer, default: nil
+attribute :gpg_check, kind_of: [TrueClass, FalseClass], default: true

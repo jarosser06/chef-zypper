@@ -15,6 +15,7 @@ action :add do
       end
       command = 'zypper ar'
       command << ' -f' if new_resource.autorefresh
+      command << ' -G' unless new_resource.gpg_check
       command << " #{new_resource.uri} \"#{new_resource.repo_name}\""
       shellout = Mixlib::ShellOut.new(command, user: 'root').run_command
       if shellout.stderr.empty?
