@@ -1,5 +1,9 @@
 # zypper CHANGELOG
 
+## 0.4.1
+
+- [lamont-granquist] - Add chef_version_for_provides
+
 ## 0.4.0
 
 - [tas50] - Add Whyrun support
