@@ -1,3 +1,5 @@
+WARNING: THIS COOKBOOK IS NOT MAINTAINED, PLEASE USE THE BUILT-IN CHEF RESOURCES MOVING FORWARD!
+
 # zypper Cookbook
 
 Cookbook that provides a lwrp for zypper repositories and also a recipe to install and configure the smt-client for SLES.
